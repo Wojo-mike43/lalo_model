@@ -6,7 +6,8 @@ This was created for my friend Lalo to identify the most important factors that 
 A Random Forest Classification model is a supervised machine learning algorithm that builds multiple decision trees during training and merges them to improve prediction accuracy and control overfitting. This approach is particularly well-suited for determining the importance of features in predicting complex outcomes, such as interest rate cuts, where relationships between indicators can be non-linear and interactive.
 
 - **Data:**
-Data for 49 different economic indicators is collected using FRED’s API going back to the 1970s. These indicators include metrics such as the unemployment rate, consumer sentiment, and housing starts, which provide a comprehensive set of macroeconomic data for the analysis.
+  * Data for 49 different economic indicators is collected using FRED’s API going back to the 1970s. These indicators include metrics such as the unemployment rate, consumer sentiment, and housing starts, which provide a comprehensive set of macroeconomic data for the analysis.
+  * If you are attempting to run the model yourself, please replace "your FRED API Key here" with your FRED API key in the '__main__' block of the code. A FRED API key can be aquired here: [https://fred.stlouisfed.org/docs/api/api_key.html].
 
 - **Feature Engineering:**
   * The data for each indicator is cleaned and resampled using `pandas` to a consistent monthly frequency.
@@ -25,8 +26,9 @@ Data for 49 different economic indicators is collected using FRED’s API going 
   * Hyperparameter tuning (GridSearchCV) is used to find the optimal set of parameters for the model, including the number of trees, maximum tree depth, minimum number of samples needed for splitting nodes and leaf nodes, and class weightings to handle class imbalance between rate cuts and non-rate cuts.
   * The model is evaluated using precision, F1 score, and recall, with a focus on recall to eliminate false negatives (missing a rate cut). 
 
-- **Output and Interpretation**
-  * 
+## Output and Interpretation:
+
+
 
   
   
