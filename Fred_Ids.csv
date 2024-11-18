@@ -1,0 +1,50 @@
+﻿ID,Indicator
+FEDFUNDS,U.S. Federal Funds Rate
+DGS10,"Market Yield on U.S. Treasury Securities at 10-Year Constant Maturity, Quoted on an Investment Basis"
+DGS2,"Market Yield on U.S. Treasury Securities at 2-Year Constant Maturity, Quoted on an Investment Basis"
+CPIAUCSL,Consumer Price Index for All Urban Consumers: All Items in U.S. City Average
+UNRATE,Unemployment Rate
+PAYEMS,"All Employees, Total Nonfarm"
+ICSA,Initial Claims Unemployment
+INDPRO,Industrial Production: Total Index
+HOUST,New Privately-Owned Housing Units Started: Total Units
+PCE,Personal Consumption Expenditures
+BAA10Y,Moody's Seasoned Baa Corporate Bond Yield Relative to Yield on 10-Year Treasury Constant Maturity
+UMCSENT,University of Michigan: Consumer Sentiment
+BUSINV,Total Business Inventories
+PI,Personal Income
+PSAVERT,Personal Saving Rate
+M2SL,M2
+SP500,S&P 500
+FGEXPND,Federal Government: Current Expenditures
+BOPGSTB,"Trade Balance: Goods and Services, Balance of Payments Basis"
+DRSFRMACBS,"Delinquency Rate on Single-Family Residential Mortgages, Booked in Domestic Offices, All Commercial Banks"
+EXHOSLUSM495S,Existing Home Sales
+CSUSHPINSA,S&P CoreLogic Case-Shiller U.S. National Home Price Index
+DCOILWTICO,"Crude Oil Prices: West Texas Intermediate (WTI) - Cushing, Oklahoma"
+CFNAIMA3,Chicago Fed National Activity Index: Three Month Moving Average
+TCU,Capacity Utilization: Total Index
+IR,Import Price Index (End Use): All Commodities
+IEABC,Balance on current account
+VIXCLS,CBOE Volatility Index: VIX
+TOTALSL,Total Consumer Credit Owned and Securitized
+MTSDS133FMS,Federal Surplus or Deficit [-]
+EFFR,Effective Federal Funds Rate
+NCBDBIQ027S,"Nonfinancial Corporate Business; Debt Securities; Liability, Level"
+DSPIC96,Real Disposable Personal Income
+REVOLSL,Revolving Consumer Credit Owned and Securitized
+DRCCLACBN,"Delinquency Rate on Credit Card Loans, All Commercial Banks"
+CORCCACBN,"Charge-Off Rate on Credit Card Loans, All Commercial Banks"
+DRCLACBN,"Delinquency Rate on Consumer Loans, All Commercial Banks"
+CFNAIDIFF,Chicago Fed National Activity Index: Diffusion Index
+CIVPART,Labor Force Participation Rate
+WALCL,Assets: Total Assets: Total Assets (Less Eliminations from Consolidation): Wednesday Level
+GFDEGDQ188S,Federal Debt: Total Public Debt as Percent of Gross Domestic Product
+A053RC1Q027SBEA,National income: Corporate profits before tax (without IVA and CCAdj)
+OPHNFB,Nonfarm Business Sector: Labor Productivity (Output per Hour) for All Workers
+JTSJOL,Job Openings: Total Nonfarm
+GFDEBTN,Federal Debt: Total Public Debt
+CORESTICKM159SFRBATL,Sticky CPI
+GDPC1,Real GDP
+DRCCLOBS,"Delinquency Rate on Credit Card Loans, Banks Not Among the 100 Largest in Size by Assets"
+DRCCLT100S,"Delinquency Rate on Credit Card Loans, Banks Ranked 1st to 100th Largest in Size by Assets"
