@@ -78,4 +78,4 @@ This was created for my friend Lalo to identify the most important factors that 
       - F1-Score: 0.87
 
 - **Conclusion:**
-  * The model is highly accurate in predicting "no rate cut" scenarios, with 95% precision and 90% recall. For predicting rate cuts, the model correctly identifies 67% of actual rate cuts, with 50% of its rate-cut predictions being accurate. Improvements in precision for rate cuts can enhance the model’s overall performance.
+  * The model is highly accurate in predicting "no rate cut" scenarios, with 95% precision and 90% recall. For predicting rate cuts, the model correctly identifies 67% of actual rate cuts, with 50% of its rate-cut predictions being accurate.
