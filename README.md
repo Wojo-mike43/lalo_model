@@ -44,14 +44,15 @@ The model outputs a classification report, which includes statistics for both cl
 - **Class 0**: No rate cut  
 - **Class 1**: Predicted rate cut  
 
-              precision    recall  f1-score   support
+The model outputs the following classification report:
 
-           0       0.95      0.90      0.92        96
-           1       0.50      0.67      0.57        15
-
-    accuracy                           0.86       111
-   macro avg       0.72      0.78      0.75       111
-weighted avg       0.88      0.86      0.87       111
+| Class       | Precision | Recall | F1-Score | Support |
+|-------------|-----------|--------|----------|---------|
+| **0** (No Rate Cut) | 0.95      | 0.90   | 0.92     | 96      |
+| **1** (Rate Cut)    | 0.50      | 0.67   | 0.57     | 15      |
+| **Accuracy**        |           |        | 0.86     | 111     |
+| **Macro Avg**       | 0.72      | 0.78   | 0.75     | 111     |
+| **Weighted Avg**    | 0.88      | 0.86   | 0.87     | 111     |
 
 ### **Interpretation**
 - **Precision**:  
