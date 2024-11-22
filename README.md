@@ -7,7 +7,7 @@ A Random Forest Classification model is a supervised machine learning algorithm 
 
 - **Data:**
   * Data for 49 different economic indicators is collected using FRED’s API going back to the 1970s. These indicators include metrics such as the unemployment rate, consumer sentiment, and housing starts, which provide a comprehensive set of macroeconomic data for the analysis.
-  * If you are attempting to run the model yourself, please replace "your FRED API Key here" with your FRED API key in the '__main__' block of the code. A FRED API key can be aquired here: [https://fred.stlouisfed.org/docs/api/api_key.html].
+  * If you are attempting to run the model yourself, please replace "your FRED API Key here" with your FRED API key in the '__main__' block of the code. A FRED API key can be acquired here: [https://fred.stlouisfed.org/docs/api/api_key.html].
 
 - **Feature Engineering:**
   * The data for each indicator is cleaned and resampled using `pandas` to a consistent monthly frequency.
@@ -19,14 +19,70 @@ A Random Forest Classification model is a supervised machine learning algorithm 
 
 - **Recursive Feature Elimination**  
   * Recursive Feature Elimination is employed to identify the most important features from the dataset. Using a Random Forest Model as the estimator, features are recursively removed, and the model’s performance is evaluated until the optimal set of features is determined.
-  * This step is important as it reduces the dimensionality of the model, and enhances its computational efficiency. 
+  * This step is important as it reduces the model’s dimensionality, enhancing its computational efficiency. 
 
 - **Random Forest Model:**  
-  * Next, a Random Forest Classification model is trained to predict whether an interest rate cut will occur in the next month.
+  * Next, a Random Forest Classification model is trained to predict whether an interest rate cut will occur next month.
   * Hyperparameter tuning (GridSearchCV) is used to find the optimal set of parameters for the model, including the number of trees, maximum tree depth, minimum number of samples needed for splitting nodes and leaf nodes, and class weightings to handle class imbalance between rate cuts and non-rate cuts.
-  * The model is evaluated using precision, F1 score, and recall, with a focus on recall to eliminate false negatives (missing a rate cut). 
+  * The model is evaluated using precision, F1 score, and recall, focusing on recall to eliminate false negatives (missing a rate cut). 
 
 ## Output and Interpretation:
+The model has two different outputs:
+
+- **Best Hyperparameters**
+  * These are the optimal hyperparameters for the model, out of all possible combinations of hyperparameters.
+  * Model output: Best Hyperparameters: {'bootstrap': False, 'class_weight': {0: 1, 1: 4}, 'max_depth': 5, 'min_samples_leaf': 4, 'min_samples_split': 15, 'n_estimators': 100}
+
+
+### **Best Hyperparameters**
+The best hyperparameters identified through `GridSearchCV` are:
+
+{'bootstrap': False, 'class_weight': {0: 1, 1: 4}, 'max_depth': 5, 'min_samples_leaf': 4, 'min_samples_split': 15, 'n_estimators': 100}
+
+### **Classification Report**
+The model outputs a classification report, which includes statistics for both classes:  
+- **Class 0**: No rate cut  
+- **Class 1**: Predicted rate cut  
+
+              precision    recall  f1-score   support
+
+           0       0.95      0.90      0.92        96
+           1       0.50      0.67      0.57        15
+
+    accuracy                           0.86       111
+   macro avg       0.72      0.78      0.75       111
+weighted avg       0.88      0.86      0.87       111
+
+### **Interpretation**
+- **Precision**:  
+  - Class 0: 0.95 - 95% of predicted "no rate cut" instances are correct.  
+  - Class 1: 0.50 - 50% of predicted "rate cut" instances are correct.  
+
+- **Recall**:  
+  - Class 0: 0.90 - 90% of actual "no rate cut" instances are correctly identified.  
+  - Class 1: 0.67 - 67% of actual "rate cut" instances are correctly identified.  
+
+- **F1-Score**:  
+  - Class 0: 0.92 - A strong balance between precision and recall.  
+  - Class 1: 0.57 - Indicates room for improvement in predicting rate cuts.  
+
+- **Support**:  
+  - Class 0: 96 instances of "no rate cut."  
+  - Class 1: 15 instances of "rate cut."  
+
+- **Accuracy**:  
+  - The model correctly predicts outcomes **86%** of the time.
+
+- **Macro Average**:  
+  - An unweighted average of metrics for both classes:  
+    - Precision: 0.72
+
+### **Conclusion**
+The model is highly accurate in predicting "no rate cut" scenarios, with 95% precision and 90% recall. For predicting rate cuts, the model correctly identifies 67% of actual rate cuts, with 50% of its rate-cut predictions being accurate.
+
+
+
+    
 
 
 
