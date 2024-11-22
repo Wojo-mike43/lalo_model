@@ -1,11 +1,10 @@
+import datetime as dt
 import pandas as pd
 from fredapi import Fred
-import datetime as dt
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import StratifiedKFold
 from sklearn.feature_selection import RFECV
-from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import classification_report
+from sklearn.model_selection import GridSearchCV, StratifiedKFold, train_test_split
 
 fred_ids = [
     "FEDFUNDS", "DGS10", "DGS2", "CPIAUCSL", "UNRATE",
@@ -17,7 +16,8 @@ fred_ids = [
     "EFFR", "NCBDBIQ027S", "DSPIC96", "REVOLSL", "DRCCLACBN",
     "CORCCACBN", "DRCLACBN", "CFNAIDIFF", "CIVPART", "WALCL",
     "GFDEGDQ188S", "A053RC1Q027SBEA", "OPHNFB", "JTSJOL", "GFDEBTN",
-    "CORESTICKM159SFRBATL", "GDPC1", "DRCCLOBS", "DRCCLT100S"]
+    "CORESTICKM159SFRBATL", "GDPC1", "DRCCLOBS", "DRCCLT100S"
+]
 
 
 class DataFetcher:
@@ -28,26 +28,23 @@ class DataFetcher:
         self.data_ids = data_ids
 
     def fetch_data_fred_multi(self, days, frequency='D', end_date=None):
-        if end_date is not None:
-            end_date = pd.to_datetime(end_date)
-
-        else:
-            end_date = dt.datetime.today()
-
+        end_date = pd.to_datetime(end_date) if end_date else dt.datetime.today()
         start_date = end_date - dt.timedelta(days)
+
         df_combined = pd.DataFrame()
 
         for data_id in self.data_ids:
             df = self.fred.get_series(data_id, start_date=start_date, end_date=end_date)
-            df = df[df.index.to_series().between(start_date, end_date)]
-            df.index = pd.to_datetime(df.index)
-            df_resampled = df.resample(frequency).ffill()
-            df_combined[data_id] = df_resampled
+            if df is not None:
+                df = df[df.index.to_series().between(start_date, end_date)]
+                df.index = pd.to_datetime(df.index)
+                df_resampled = df.resample(frequency).ffill()
+                df_combined[data_id] = df_resampled
 
         return df_combined
 
 
-class DataCleaner:
+class DataClean:
     def __init__(self, data):
         self.data = data
 
@@ -105,7 +102,6 @@ class ModelTrainer:
         self.y_test = y_test
 
     def train_model(self):
-
         param_grid = {
             'n_estimators': [100, 300, 500],
             'max_depth': [5, 10, 15, 20],
@@ -126,26 +122,28 @@ class ModelTrainer:
 
 
 if __name__ == '__main__':
+
     #Please input your FRED API key below:
-    data_fetcher = DataFetcher(api_key='your FRED API Key here', data_ids=fred_ids)
-    data = data_fetcher.fetch_data_fred_multi(days=17000, frequency='ME')
+    datafetch = DataFetcher(api_key='your FRED API Key here', data_ids=fred_ids)
+    data = datafetch.fetch_data_fred_multi(days=17000)
     print('Data Pull Complete')
 
-    data_cleaner = DataCleaner(data)
-    cleaned_data = data_cleaner.data_clean()
-    print('Data Cleaning Complete')
+    datacleaner = DataClean(data)
+    cleaned_data = datacleaner.data_clean()
+    print("Data Cleaning Complete")
 
     X = cleaned_data.drop(['rate_cuts'], axis=1)
     y = cleaned_data['rate_cuts']
     X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.8, random_state=42, shuffle=True)
     print("Train-Test Split Complete")
 
-    feature_selector = FeatureSelector(X_train, y_train)
-    selected_features = feature_selector.recursive_feature_elim()
-    print("Recursive Feature Elimination Complete")
+    featureselector = FeatureSelector(X_train, y_train)
+    selected_features = featureselector.recursive_feature_elim()
+    print('Recursive Feature Elimination Complete')
 
-    X_train_selected = X_train[selected_features]
-    X_test_selected = X_test[selected_features]
+    X_train = X_train[selected_features['Feature']]
+    X_test = X_test[selected_features['Feature']]
 
-    model_trainer = ModelTrainer(X_train_selected, y_train,X_test_selected , y_test)
+    model_trainer = ModelTrainer(X_train, y_train, X_test, y_test)
     best_model = model_trainer.train_model()
+
