@@ -29,11 +29,6 @@ A Random Forest Classification model is a supervised machine learning algorithm 
 ## Output and Interpretation:
 The model has two different outputs:
 
-- **Best Hyperparameters**
-  * These are the optimal hyperparameters for the model, out of all possible combinations of hyperparameters.
-  * Model output: Best Hyperparameters: {'bootstrap': False, 'class_weight': {0: 1, 1: 4}, 'max_depth': 5, 'min_samples_leaf': 4, 'min_samples_split': 15, 'n_estimators': 100}
-
-
 ### **Best Hyperparameters**
 The best hyperparameters identified through `GridSearchCV` are:
 
